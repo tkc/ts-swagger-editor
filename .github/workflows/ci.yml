@@ -14,10 +14,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: dependency
-        run: npm install
+        run: yarn
       - name: Tsc
-        run: npm run tsc     
+        run: yarn tsc
       - name: Build
-        run: npm run build
+        run: yarn build
         env:
           CI: true
