@@ -1,5 +1,6 @@
+export type SwaggerVersion = "2.0";
 export type SchemesType = ["https" | "http"];
-export type ContentType = "string" | "number" | "integer" | "boolean" | "array" | "file";
+export type ContentType = "object" | "string" | "number" | "integer" | "boolean" | "array" | "file";
 export type CRUDType = "get" | "post" | "put" | "delete" | "head" | "options" | "trace" | "connect";
 
 export type MIMETypes =
@@ -105,7 +106,9 @@ export interface ParametersType {
 export interface ResponsesType {
   description?: string;
   schema?: {
-    $ref: string;
+    $ref?: string;
+    type?: ContentType;
+    properties?: {};
   };
 }
 
@@ -126,22 +129,29 @@ export interface Paths {
 
 export interface Definitions {
   [key: string]: {
-    type: "object" | "string";
-    properties: {
+    title?: string;
+    type: ContentType;
+    enum?: (string | number)[];
+    properties?: {
       [key: string]: {
-        type: ContentType;
+        type?: ContentType;
+        title?: string;
         format?: FormatType;
         enum?: (string | number)[];
         items?: {
-          $ref: string;
+          $ref?: string;
+          type?: ContentType;
         };
+        $ref?: string;
       };
     };
+    required?: string[];
   };
 }
 
+type SwaggerVersion = "2.0";
 export interface Schema {
-  swagger: string;
+  swagger: SwaggerVersion;
   info: {
     version: string;
     title: string;
