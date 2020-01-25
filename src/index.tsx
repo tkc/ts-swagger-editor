@@ -11,11 +11,11 @@ function App() {
         fontSize: "15px",
         fontFamily: "Roboto,sans-serif",
         fontWeight: 400,
-        padding: "30px",
+        padding: "20px",
       }}
     >
       <pre>
-        <code>{JSON.stringify(JSON.parse(JSON.stringify(schema)), null, 2)}</code>
+        <code>{JSON.stringify(JSON.parse(JSON.stringify(schema)), null, 1)}</code>
       </pre>
     </div>
   );
