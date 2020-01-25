@@ -1,7 +1,7 @@
 import { Schema } from "./types";
 
 export const schema: Schema = {
-  swagge: "2.0",
+  swagger: "2.0",
   info: {
     version: "1.0.0",
     title: "title",
@@ -18,7 +18,7 @@ export const schema: Schema = {
   schemes: ["https"],
   paths: {
     "/auth": {
-      POST: {
+      post: {
         tags: ["tag1"],
         summary: "User authentication",
         description: "",
@@ -56,7 +56,7 @@ export const schema: Schema = {
       },
     },
     "/users": {
-      PUT: {
+      put: {
         tags: ["tag1"],
         consumes: ["application/x-www-form-urlencoded"],
         produces: ["application/json"],
@@ -79,7 +79,7 @@ export const schema: Schema = {
             name: "role",
             type: "string",
             enum: ["enum1"],
-            default: "default",
+            default: "enum1",
           },
         ],
         responses: {
