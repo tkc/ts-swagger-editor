@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esNext",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "jsx": "react",
+    "noEmit": true, 
+    "strict": true,
+    "moduleResolution": "node" ,
+    "baseUrl": ".", 
+    "paths": {
+      "＊": [
+        "types/*"
+      ]
+    },
+    "typeRoots": [ 
+      "node_modules/@types",
+      "custome"
+    ],
+    "allowSyntheticDefaultImports": true, 
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ]
+  },
+  "include": [
+    "src",
+    "stories",
+    "declaration.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
