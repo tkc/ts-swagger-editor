@@ -1,6 +1,6 @@
 export type SchemesType = ["https" | "http"];
 export type ContentType = "string" | "number" | "integer" | "boolean" | "array" | "file";
-export type CRUDType = "GET" | "POST" | "PUT" | "DELETE" | "HEAD" | "OPTIONS" | "TRACE" | "CONNECT";
+export type CRUDType = "get" | "post" | "put" | "delete" | "head" | "options" | "trace" | "connect";
 
 export type MIMETypes =
   | "application/json"
@@ -141,7 +141,7 @@ export interface Definitions {
 }
 
 export interface Schema {
-  swagge: string;
+  swagger: string;
   info: {
     version: string;
     title: string;
