@@ -1,99 +1,64 @@
 import { Schema } from "./types";
 
-export const schema: Schema = {
+type Tags = "Auth" | "Store";
+
+export interface Definitions {
+  User: {
+    name: string;
+    email: string;
+    password: string;
+  };
+}
+
+export const schema: Schema<Tags, Definitions> = {
   swagger: "2.0",
   info: {
     version: "1.0.0",
     title: "title",
-    termsOfService: "termsOfService",
   },
   host: "example.com",
   basePath: "/api/v1",
   tags: [
     {
-      name: "tag1",
-      description: "description",
+      name: "Auth",
+    },
+    {
+      name: "Store",
     },
   ],
-  schemes: ["https"],
+  schemes: ["http"],
   paths: {
-    "/auth": {
+    "/user/login": {
       post: {
-        tags: ["tag1"],
-        summary: "User authentication",
-        description: "",
-        operationId: "LoginUser",
-        consumes: ["application/x-www-form-urlencoded"],
-        produces: ["application/json"],
+        consumes: ["multipart/form-data"],
+        tags: ["Auth"],
         parameters: [
           {
             in: "formData",
             name: "email",
             type: "string",
-            description: "description",
           },
           {
             in: "formData",
-            name: "password",
+            name: "name",
             type: "string",
-            description: "description",
           },
         ],
         responses: {
           "200": {
-            description: "description",
+            description: "",
             schema: {
-              $ref: "#/definitions/User",
+              $ref: "#/definitions/Account",
             },
           },
-          "401": {
-            description: "description",
-          },
-          "500": {
-            description: "description",
-          },
-        },
-      },
-    },
-    "/users": {
-      put: {
-        tags: ["tag1"],
-        consumes: ["application/x-www-form-urlencoded"],
-        produces: ["application/json"],
-        parameters: [
-          {
-            in: "formData",
-            name: "email",
-            type: "string",
-            default: "default",
-            required: true,
-          },
-          {
-            in: "formData",
-            name: "password",
-            type: "string",
-            default: "default",
-          },
-          {
-            in: "formData",
-            name: "role",
-            type: "string",
-            enum: ["enum1"],
-            default: "enum1",
-          },
-        ],
-        responses: {
-          "200": {
-            description: "description",
-            schema: {
-              $ref: "#/definitions/Users",
-            },
+          "400": {
+            description: "",
           },
           "401": {
-            description: "description",
+            description: "",
           },
           "500": {
-            description: "description",
+            description: "",
           },
         },
       },
@@ -101,31 +66,19 @@ export const schema: Schema = {
   },
   definitions: {
     User: {
+      title: "User",
       type: "object",
       properties: {
-        id: {
-          type: "integer",
-          format: "int64",
-        },
-        email: {
+        name: {
           type: "string",
+          title: "email",
         },
-        role: {
+        employeeCode: {
           type: "string",
-          enum: ["enum1", "enum2"],
+          title: "name",
         },
       },
-    },
-    Users: {
-      type: "object",
-      properties: {
-        list: {
-          type: "array",
-          items: {
-            $ref: "#/definitions/User",
-          },
-        },
-      },
+      required: ["name"],
     },
   },
 };

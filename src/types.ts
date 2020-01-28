@@ -90,10 +90,16 @@ export type ResponsesStatusType =
   | "511"
   | "599";
 
-export interface ParametersType {
-  in: "query" | "header" | "path" | "formData" | "body";
-  name: string;
-  type: ContentType;
+type ValueOf<T> = T[keyof T];
+type Property<T> = keyof T | ValueOf<{ [K in keyof T]: T[K] extends object ? Property<T[K]> : never }>;
+
+type ParametersType<T> = {
+  in?: "query" | "header" | "path" | "formData" | "body";
+  name: Property<T[keyof T]>;
+  type?: ContentType;
+  items?: {
+    type: ContentType;
+  };
   required?: boolean;
   description?: string;
   default?: string;
@@ -101,10 +107,10 @@ export interface ParametersType {
   minLength?: number;
   maxLength?: number;
   enum?: (string | number)[];
-}
+};
 
 export interface ResponsesType {
-  description?: string;
+  description: string;
   schema?: {
     $ref?: string;
     type?: ContentType;
@@ -112,30 +118,30 @@ export interface ResponsesType {
   };
 }
 
-export interface MethodParamType {
-  tags: string[];
+export interface MethodParamType<T, U> {
+  tags: T[];
   summary?: string;
   description?: string;
   operationId?: string;
-  consumes: MIMETypes[];
-  produces: MIMETypes[];
-  parameters: ParametersType[];
+  consumes?: MIMETypes[];
+  produces?: MIMETypes[];
+  parameters: ParametersType<U>[];
   responses: { [key in ResponsesStatusType]?: ResponsesType };
 }
 
-export interface Paths {
-  [key: string]: { [key in CRUDType]?: MethodParamType };
+export interface Paths<T, U> {
+  [key: string]: { [key in CRUDType]?: MethodParamType<T, U> };
 }
 
-export interface Definitions {
+export interface Definitions<T> {
   [key: string]: {
-    title?: string;
+    title?: keyof T;
     type: ContentType;
     enum?: (string | number)[];
     properties?: {
       [key: string]: {
         type?: ContentType;
-        title?: string;
+        title?: Property<T[keyof T]>;
         format?: FormatType;
         enum?: (string | number)[];
         items?: {
@@ -145,22 +151,23 @@ export interface Definitions {
         $ref?: string;
       };
     };
-    required?: string[];
+    required?: [Property<T[keyof T]>];
   };
 }
 
 type SwaggerVersion = "2.0";
-export interface Schema {
+
+export interface Schema<T, U> {
   swagger: SwaggerVersion;
   info: {
     version: string;
     title: string;
-    termsOfService: string;
+    termsOfService?: string;
   };
   host: string;
   basePath: string;
-  tags: { name: string; description?: string; externalDocs?: {} }[];
+  tags: { name: T; description?: string; externalDocs?: {} }[];
   schemes: SchemesType;
-  paths: Paths;
-  definitions?: Definitions;
+  paths: Paths<T, U>;
+  definitions?: Definitions<U>;
 }
