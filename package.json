@@ -1,28 +1,80 @@
 {
-  "name": "ts-swagger-editor",
-  "version": "0.1.0",
-  "private": true,
-  "main": "src/index.tsx",
-  "dependencies": {
-    "@types/prop-types": "^15.7.3",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.1",
-    "react-scripts-ts": "^2.13.0",
-    "tslint-eslint-rules": "^5.4.0"
-  },
+  "name": "ts-swagger",
+  "version": "1.0.0",
+  "description": "ts-swagger",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "build": "NODE_ENV=local webpack --mode production --config webpack.config.js",
+    "lint": "tslint \"src/**/*\" -e \"src/**/*.snap\" -e \"src/**/*.d.ts\" -e \"src/**/*.svg\"",
+    "prettier": "prettier --write '**/*.{tsx,ts}'",
+    "serve": "webpack-dev-server --config webpack.config.serve.local.js",
+    "serve:staging": "webpack-dev-server --config webpack.config.serve.staging.js",
+    "start": "npm run serve",
+    "test": "jest",
+    "tsc": "tsc -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "dependencies": {
+    "@types/node": "^13.5.1",
+    "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.5",
+    "history": "^4.10.1",
+    "react": "16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "5.0.7",
+    "react-router": "5.1.2",
+    "react-router-dom": "5.1.2",
+    "yarn": "^1.17.3"
   },
   "devDependencies": {
-    "@types/jest": "^22.1.3",
-    "@types/node": "^9.4.6",
-    "@types/react": "16.0.38",
-    "@types/react-dom": "16.0.4",
-    "typescript": "^2.7.2"
+    "@babel/traverse": "7.7.4",
+    "@babel/types": "^7.8.3",
+    "@types/react-transition-group": "4.2.3",
+    "@types/redux-logger": "3.0.7",
+    "@types/webpack": "4.41.0",
+    "babel-loader": "8.0.6",
+    "babylon": "7.0.0-beta.47",
+    "concurrently": "5.0.1",
+    "config-loader": "0.0.1",
+    "connect-history-api-fallback": "1.6.0",
+    "cpy-cli": "3.0.0",
+    "jest": "24.9.0",
+    "js-yaml": "3.13.1",
+    "light-ts-loader": "1.1.2",
+    "prettier": "1.19.1",
+    "ts-jest": "23.10.5",
+    "ts-loader": "6.2.1",
+    "tslint": "5.20.1",
+    "tslint-eslint-rules": "5.4.0",
+    "typescript": "3.7.3",
+    "webpack": "^4.41.5",
+    "webpack-cli": "3.3.10",
+    "webpack-dev-server": "^3.10.1",
+    "webpack-serve": "3.1.0"
   },
-  "keywords": [],
-  "description": ""
+  "jest": {
+    "moduleNameMapper": {
+      "\\.svg": "<rootDir>/mocks/icon-mock.tsx"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.spec.json"
+      }
+    },
+    "testMatch": [
+      "**/?(*.)+(spec|test).ts?(x)"
+    ]
+  }
 }

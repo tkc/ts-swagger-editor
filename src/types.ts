@@ -1,3 +1,6 @@
+type ValueOf<T> = T[keyof T];
+type Property<T> = keyof T | ValueOf<{ [K in keyof T]: T[K] extends object ? Property<T[K]> : never }>;
+
 export type SwaggerVersion = "2.0";
 export type SchemesType = ["https" | "http"];
 export type ContentType = "object" | "string" | "number" | "integer" | "boolean" | "array" | "file";
@@ -89,9 +92,6 @@ export type ResponsesStatusType =
   | "510"
   | "511"
   | "599";
-
-type ValueOf<T> = T[keyof T];
-type Property<T> = keyof T | ValueOf<{ [K in keyof T]: T[K] extends object ? Property<T[K]> : never }>;
 
 type ParametersType<T> = {
   in?: "query" | "header" | "path" | "formData" | "body";
