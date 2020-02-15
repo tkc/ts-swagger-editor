@@ -1489,12 +1489,7 @@ concurrently@5.0.1:
     tree-kill "^1.2.1"
     yargs "^13.3.0"
 
-config-loader@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/config-loader/-/config-loader-0.0.1.tgz#c38ad17fc0f7baf583507ae035d0115ec9a58884"
-  integrity sha1-w4rRf8D3uvWDUHrgNdARXsmliIQ=
-
-connect-history-api-fallback@1.6.0, connect-history-api-fallback@^1.5.0, connect-history-api-fallback@^1.6.0:
+connect-history-api-fallback@^1.5.0, connect-history-api-fallback@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/connect-history-api-fallback/-/connect-history-api-fallback-1.6.0.tgz#8b32089359308d111115d81cad3fceab888f97bc"
   integrity sha512-e54B99q/OUoH64zYYRf3HBP5z24G38h5D3qXu23JGRoigpX5Ss4r9ZnDk3g0Z8uQC2x2lPaJ+UlWBc1ZWBWdLg==
@@ -6921,9 +6916,9 @@ yargs@^13.3.0:
     yargs-parser "^13.1.1"
 
 yarn@^1.17.3:
-  version "1.21.1"
-  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.21.1.tgz#1d5da01a9a03492dc4a5957befc1fd12da83d89c"
-  integrity sha512-dQgmJv676X/NQczpbiDtc2hsE/pppGDJAzwlRiADMTvFzYbdxPj2WO4PcNyriSt2c4jsCMpt8UFRKHUozt21GQ==
+  version "1.22.0"
+  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.0.tgz#acf82906e36bcccd1ccab1cfb73b87509667c881"
+  integrity sha512-KMHP/Jq53jZKTY9iTUt3dIVl/be6UPs2INo96+BnZHLKxYNTfwMmlgHTaMWyGZoO74RI4AIFvnWhYrXq2USJkg==
 
 ylru@^1.2.0:
   version "1.2.1"
